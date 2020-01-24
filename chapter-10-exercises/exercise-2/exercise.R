@@ -46,12 +46,12 @@ salaries[salaries$adjustments == max(salaries$adjustments), "employee"]
 # What was the largest decrease in salaries between the two years?
 salaries[salaries$adjustments == min(salaries$adjustments), "adjustments"]
 
-# What was the name of the employee who recieved largest decrease in salary?
+# What was the name of the employee who received largest decrease in salary?
 
 salaries[salaries$adjustments == min(salaries$adjustments), "employee"]
 
 # What was the average salary change?
-
+mean(salaries$adjustments)
 
 # For people who did not get a raise, how much money did they lose on average?
 pay_cut <- salaries[salaries$got_raise == FALSE, "adjustments"]
@@ -59,6 +59,8 @@ mean(salaries[salaries$got_raise == FALSE, "adjustments"])
 
 ## Consider: do the above averages match what you expected them to be based on 
 ## how you generated the salaries?
+# Yes, as we provided a large range (from -5000 to 10000 in salary change),
+## it is reasonable to see the mean salary change be around -2000 to -2500.
 
 # Write a .csv file of your salary data to your working directory
-
+write.csv(salaries, "salary_data.csv", row.names = FALSE)
